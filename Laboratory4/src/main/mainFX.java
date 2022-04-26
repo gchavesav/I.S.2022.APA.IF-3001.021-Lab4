@@ -21,7 +21,8 @@ public class mainFX extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLMainMenu.fxml"));
         
         Scene scene = new Scene(root);
-        
+        String css = mainFX.class.getResource("MyStyle.css").toExternalForm();
+        scene.getStylesheets().add(css);
         stage.setScene(scene);
         stage.setTitle("Laboratory No. 4 - 2022");
         stage.setResizable(false);
