@@ -4,13 +4,21 @@
  */
 package main;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.text.Text;
 
 /**
  *
@@ -18,20 +26,58 @@ import javafx.scene.control.Label;
  */
 public class FXMLMainMenuController implements Initializable {
     
-    @FXML
     private Label label;
     @FXML
-    private Button button;
-    
+    private BorderPane bp;
     @FXML
-    private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
-    }
+    private Button btnHome;
+    @FXML
+    private AnchorPane ap;
+    @FXML
+    private Button btnExit;
+    @FXML
+    private Text txtMessage;
+    @FXML
+    private Button btnStudent;
+    @FXML
+    private Button btnCourse;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }   
+    
+    private void loadPage(String page){
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource(page+".fxml")); 
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLMainMenuController.class.getName());
+        }
+        bp.setCenter(root);
+    }
+
+    @FXML
+    private void Home(MouseEvent event) {
+        this.txtMessage.setText("Laboratory No. 4");
+        this.bp.setCenter(ap);
+    }
+
+    @FXML
+    private void Exit(MouseEvent event) {
+        System.exit(0); //FORMA VALIDA
+   
+    }
+
+    @FXML
+    private void btnStudentOnAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void btnCourseOnAction(ActionEvent event) {
+    }
+
+    
+   
     
 }
