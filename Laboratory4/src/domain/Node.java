@@ -11,10 +11,11 @@ package domain;
 public class Node {
     public Object data;
     public Node next; //apuntador al sgte node
+    public Node prev; //apuntador al nodo anterior
     
     //Constructor
     public Node(Object data){
         this.data = data;
-        this.next = null;
+        this.prev = this.next = null;
     }
 }

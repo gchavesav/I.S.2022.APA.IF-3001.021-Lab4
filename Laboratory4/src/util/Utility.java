@@ -5,6 +5,8 @@
  */
 package util;
 
+import domain.DoublyLinkedList;
+import domain.SinglyLinkedList;
 import java.text.DecimalFormat;
 import java.util.Random;
 
@@ -13,6 +15,24 @@ import java.util.Random;
  * @author Profesor Lic. Gilberth Chaves Avila
  */
 public class Utility {
+    private static SinglyLinkedList singlyLinkedList = new SinglyLinkedList();
+    private static DoublyLinkedList doublyLinkedList = new DoublyLinkedList();
+
+    public static SinglyLinkedList getSinglyLinkedList() {
+        return singlyLinkedList;
+    }
+
+    public static void setSinglyLinkedList(SinglyLinkedList singlyLinkedList) {
+        Utility.singlyLinkedList = singlyLinkedList;
+    }
+
+    public static DoublyLinkedList getDoublyLinkedList() {
+        return doublyLinkedList;
+    }
+
+    public static void setDoublyLinkedList(DoublyLinkedList doublyLinkedList) {
+        Utility.doublyLinkedList = doublyLinkedList;
+    }
 
     public static int random(){
         return 1+(int) Math.floor(Math.random()*99); 
@@ -67,27 +87,61 @@ public class Utility {
         }
         return result;
     }
-
-    public static boolean equals(Object a, Object b) {
-        switch(instanceOf(a, b)){
-            case "Integer":
-                Integer x=(Integer)a; Integer y=(Integer)b;
-                //return x==y;
-                return x.equals(y);
-            case "String":
-                
-
-            case "Character":
-                
-        }
-        return false;
-    }
-
+     
     private static String instanceOf(Object a, Object b) {
         if(a instanceof Integer && b instanceof Integer) return "Integer";
         if(a instanceof String && b instanceof String) return "String";
         if(a instanceof Character && b instanceof Character) return "Character";
         return "unknown";
+    }
+
+    public static boolean equals(Object a, Object b) {
+        switch(instanceOf(a, b)){
+            case "Integer":
+                Integer a1=(Integer)a; Integer b1=(Integer)b;
+                //return x==y;
+                return a1.equals(b1);
+            case "String":
+                String a2=(String)a; String b2=(String)b;
+                return a2.equalsIgnoreCase(a2);
+            case "Character":
+                Character a3=(Character)a; Character b3=(Character)b;
+                return a3.compareTo(a3)==0;
+                
+        }
+        return false;
+    }
+   
+    //less than (menorQ)
+    public static boolean lessT(Object a, Object b){
+        switch(instanceOf(a, b)){
+            case "Integer":
+                Integer a1=(Integer) a; Integer b1=(Integer) b;
+                return a1<b1;
+            case "String":
+                String a2=(String) a; String b2=(String) b;
+                return a2.compareToIgnoreCase(b2)<0;
+            case "Character":
+                Character a3=(Character)a; Character b3=(Character)b;
+                return a3.compareTo(a3)<0;
+        }
+        return false; 
+    }
+    
+    //greater than (mayorQ)
+    public static boolean greaterT(Object a, Object b){
+        switch(instanceOf(a, b)){
+            case "Integer":
+                Integer a1=(Integer) a; Integer b1=(Integer) b;
+                return a1>b1;
+            case "String":
+                String a2=(String) a; String b2=(String) b;
+                return a2.compareToIgnoreCase(b2)>0;
+            case "Character":
+                Character a3=(Character)a; Character b3=(Character)b;
+                return a3.compareTo(a3)>0;
+        }
+        return false;
     }
      
     

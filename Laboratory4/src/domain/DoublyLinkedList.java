@@ -8,18 +8,18 @@ package domain;
  *
  * @author Profesor Gilberth Chaves A <gchavesav@ucr.ac.cr>
  */
-public class SinglyLinkedList implements List {
+public class DoublyLinkedList implements List {
     private Node first; //apunta al inicio de la lista
 
     //Constructor
-    public SinglyLinkedList(){
+    public DoublyLinkedList(){
         this.first = null;
     }
 
     @Override
     public int size() throws ListException {
         if(isEmpty())
-            throw new ListException("Singly Linked List is empty");
+            throw new ListException("Doubly Linked List is empty");
         Node aux = first;
         int counter = 0;
         while(aux!=null){
@@ -42,7 +42,7 @@ public class SinglyLinkedList implements List {
     @Override
     public boolean contains(Object element) throws ListException {
          if(isEmpty())
-            throw new ListException("Singly Linked List is empty");
+            throw new ListException("Doubly Linked List is empty");
         Node aux = first;
         while(aux!=null){
             if(util.Utility.equals(aux.data, element))
@@ -63,6 +63,8 @@ public class SinglyLinkedList implements List {
                 aux = aux.next; //muevo el aux al sgte nodo
             //se sale del while cuando aux.next == null
             aux.next = newNode;
+            //hago el doble enlace
+            newNode.prev = aux;
         }
     }
 
@@ -72,8 +74,10 @@ public class SinglyLinkedList implements List {
         if(isEmpty())
             first = newNode;
         else{
-           newNode.next = first; 
-           first = newNode;
+           newNode.next = first;
+            //hago el doble enlace
+            first.prev = newNode;
+            first = newNode;
         }
     }
 
@@ -90,7 +94,7 @@ public class SinglyLinkedList implements List {
     @Override
     public void remove(Object element) throws ListException {
         if(isEmpty())
-            throw new ListException("Singly Linked List is empty");
+            throw new ListException("Doubly Linked List is empty");
         //caso 1. El elemento a suprimir es el primero
         if(util.Utility.equals(first.data, element)){
             first = first.next;
@@ -109,6 +113,8 @@ public class SinglyLinkedList implements List {
                 //ya lo encontro, lo puede suprimir
                 //tengo que desenlazar el nodo
                 prev.next = aux.next; //se lo salta
+                //mantengo el doble enlace
+                aux.next.prev = prev;
             }
         }
     }
@@ -116,9 +122,11 @@ public class SinglyLinkedList implements List {
     @Override
     public Object removeFirst() throws ListException {
         if(isEmpty())
-            throw new ListException("Singly Linked List is empty");
+            throw new ListException("Doubly Linked List is empty");
         Object element = first.data;
         first = first.next;
+        //rompo el doble enlace
+        first.prev = null;
         return element;
     }
 
@@ -135,7 +143,7 @@ public class SinglyLinkedList implements List {
     @Override
     public int indexOf(Object element) throws ListException {
         if(isEmpty())
-            throw new ListException("Singly Linked List is empty");
+            throw new ListException("Doubly Linked List is empty");
         int i = 1; //posicion del 1er elemento
         Node aux = first;
         while(aux!=null&&!util.Utility.equals(aux.data, element)){
@@ -152,14 +160,14 @@ public class SinglyLinkedList implements List {
     @Override
     public Object getFirst() throws ListException {
         if(isEmpty())
-            throw new ListException("Singly Linked List is empty");
+            throw new ListException("Doubly Linked List is empty");
         return first.data;
     }
 
     @Override
     public Object getLast() throws ListException {
         if(isEmpty())
-            throw new ListException("Singly Linked List is empty");
+            throw new ListException("Doubly Linked List is empty");
         Node aux = first;
         while(aux.next!=null){
            aux = aux.next;
@@ -181,7 +189,7 @@ public class SinglyLinkedList implements List {
     @Override
     public Node getNode(int index) throws ListException {
         if(isEmpty())
-            throw new ListException("Singly Linked List is empty");
+            throw new ListException("Doubly Linked List is empty");
         int i = 1; //posicion del 1er elemento
         Node aux = first;
         while(aux!=null&&!util.Utility.equals(index, i)){
@@ -197,7 +205,7 @@ public class SinglyLinkedList implements List {
 
     @Override
     public String toString() {
-        String result = "Singly Linked List Content\n";
+        String result = "Doubly Linked List Content\n";
         Node aux = first;
         while(aux!=null){
            result+=aux.data+" ";
