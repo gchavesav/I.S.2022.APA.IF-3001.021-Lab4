@@ -67,6 +67,28 @@ public class Utility {
         }
         return result;
     }
+
+    public static boolean equals(Object a, Object b) {
+        switch(instanceOf(a, b)){
+            case "Integer":
+                Integer x=(Integer)a; Integer y=(Integer)b;
+                //return x==y;
+                return x.equals(y);
+            case "String":
+                
+
+            case "Character":
+                
+        }
+        return false;
+    }
+
+    private static String instanceOf(Object a, Object b) {
+        if(a instanceof Integer && b instanceof Integer) return "Integer";
+        if(a instanceof String && b instanceof String) return "String";
+        if(a instanceof Character && b instanceof Character) return "Character";
+        return "unknown";
+    }
      
     
 }

@@ -18,12 +18,20 @@ public class SinglyLinkedList implements List {
 
     @Override
     public int size() throws ListException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if(isEmpty())
+            throw new ListException("Singly Linked List is empty");
+        Node aux = first;
+        int counter = 0;
+        while(aux!=null){
+           counter++;
+           aux = aux.next;
+        }
+        return counter;
     }
 
     @Override
     public void clear() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        this.first = null;
     }
 
     @Override
@@ -33,7 +41,15 @@ public class SinglyLinkedList implements List {
 
     @Override
     public boolean contains(Object element) throws ListException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+         if(isEmpty())
+            throw new ListException("Singly Linked List is empty");
+        Node aux = first;
+        while(aux!=null){
+            if(util.Utility.equals(aux.data, element))
+                return true;
+           aux = aux.next;
+        }
+        return false;
     }
 
     @Override
@@ -42,7 +58,11 @@ public class SinglyLinkedList implements List {
         if(isEmpty()){
             this.first = newNode;
         }else{
-            
+            Node aux = first;
+            while(aux.next!=null)
+                aux = aux.next; //muevo el aux al sgte nodo
+            //se sale del while cuando aux.next == null
+            aux.next = newNode;
         }
     }
 
@@ -53,7 +73,7 @@ public class SinglyLinkedList implements List {
 
     @Override
     public void addLast(Object element) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        add(element);
     }
 
     @Override
@@ -63,7 +83,28 @@ public class SinglyLinkedList implements List {
 
     @Override
     public void remove(Object element) throws ListException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if(isEmpty())
+            throw new ListException("Singly Linked List is empty");
+        //caso 1. El elemento a suprimir es el primero
+        if(util.Utility.equals(first.data, element)){
+            first = first.next;
+        }  
+        //case 2. El elemento a suprimir puede estar donde sea
+        else{
+            Node prev = first; //elemento anterior
+            Node aux = first.next; //elemento sgte
+            while(aux!=null&&!util.Utility.equals(aux.data, element)){
+                prev = aux; //actualizo anterior
+                aux = aux.next;
+            }
+            //se sale del while cuando alcanza nulo
+            //o cuando encuentra el elemento a suprimir
+            if(aux!=null&&util.Utility.equals(aux.data, element)){
+                //ya lo encontro, lo puede suprimir
+                //tengo que desenlazar el nodo
+                prev.next = aux.next; //se lo salta
+            }
+        }
     }
 
     @Override
@@ -88,12 +129,21 @@ public class SinglyLinkedList implements List {
 
     @Override
     public Object getFirst() throws ListException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if(isEmpty())
+            throw new ListException("Singly Linked List is empty");
+        return first.data;
     }
 
     @Override
     public Object getLast() throws ListException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if(isEmpty())
+            throw new ListException("Singly Linked List is empty");
+        Node aux = first;
+        while(aux.next!=null){
+           aux = aux.next;
+        }
+        //cuando sale del while es porque esta en el ult nodo
+        return aux.data;
     }
 
     @Override
