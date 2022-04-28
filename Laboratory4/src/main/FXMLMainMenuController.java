@@ -56,6 +56,16 @@ public class FXMLMainMenuController implements Initializable {
         }
         bp.setCenter(root);
     }
+    
+    public static void loadPage(URL ui, BorderPane bp){
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(ui); 
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLMainMenuController.class.getName());
+        }
+        bp.setCenter(root);
+    }
 
     @FXML
     private void Home(MouseEvent event) {
@@ -71,6 +81,7 @@ public class FXMLMainMenuController implements Initializable {
 
     @FXML
     private void btnStudentOnAction(ActionEvent event) {
+        FXMLMainMenuController.loadPage(getClass().getResource("FXMLStudent.fxml"), bp);
     }
 
     @FXML

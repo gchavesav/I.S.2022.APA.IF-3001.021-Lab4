@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 
 /**
@@ -18,14 +19,20 @@ import javafx.scene.layout.BorderPane;
  *
  * @author Profesor Gilberth Chaves A <gchavesav@ucr.ac.cr>
  */
-public class FXMLStudentController implements Initializable {
+public class FXMLAddStudentController implements Initializable {
 
+    @FXML
+    private BorderPane bp;
     @FXML
     private Button btnAdd;
     @FXML
-    private TableView<?> studentTableView;
+    private TextField idTextField;
     @FXML
-    private BorderPane bp;
+    private TextField nameTextField;
+    @FXML
+    private TextField ageTextField;
+    @FXML
+    private TextField addressTextField;
 
     /**
      * Initializes the controller class.
@@ -37,7 +44,6 @@ public class FXMLStudentController implements Initializable {
 
     @FXML
     private void btnAddOnAction(ActionEvent event) {
-        FXMLMainMenuController.loadPage(getClass().getResource("FXMLAddStudent.fxml"), bp);
     }
     
 }
