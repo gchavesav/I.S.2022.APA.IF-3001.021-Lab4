@@ -60,10 +60,14 @@ public class FXMLMainMenuController implements Initializable {
     public static void loadPage(URL ui, BorderPane bp){
         Parent root = null;
         try {
-            root = FXMLLoader.load(ui); 
+            root = FXMLLoader.load(ui);
         } catch (IOException ex) {
             Logger.getLogger(FXMLMainMenuController.class.getName());
         }
+        //cleaning nodes
+        bp.setTop(null); bp.setCenter(null); bp.setBottom(null); 
+        //bp.setLeft(null); 
+        bp.setRight(null);
         bp.setCenter(root);
     }
 
