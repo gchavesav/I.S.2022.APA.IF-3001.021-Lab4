@@ -68,7 +68,13 @@ public class SinglyLinkedList implements List {
 
     @Override
     public void addFirst(Object element) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Node newNode = new Node(element);
+        if(isEmpty())
+            first = newNode;
+        else{
+           newNode.next = first; 
+           first = newNode;
+        }
     }
 
     @Override
@@ -109,7 +115,11 @@ public class SinglyLinkedList implements List {
 
     @Override
     public Object removeFirst() throws ListException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if(isEmpty())
+            throw new ListException("Singly Linked List is empty");
+        Object element = first.data;
+        first = first.next;
+        return element;
     }
 
     @Override
@@ -124,7 +134,19 @@ public class SinglyLinkedList implements List {
 
     @Override
     public int indexOf(Object element) throws ListException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if(isEmpty())
+            throw new ListException("Singly Linked List is empty");
+        int i = 1; //posicion del 1er elemento
+        Node aux = first;
+        while(aux!=null&&!util.Utility.equals(aux.data, element)){
+            aux = aux.next;
+            i++;
+        }
+        //sale cuando aux==null o encontro el elemento
+        if(aux!=null&&util.Utility.equals(aux.data, element)){
+            return i;
+        }
+        return -1; //el elemento no existe
     }
 
     @Override
@@ -158,7 +180,19 @@ public class SinglyLinkedList implements List {
 
     @Override
     public Node getNode(int index) throws ListException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if(isEmpty())
+            throw new ListException("Singly Linked List is empty");
+        int i = 1; //posicion del 1er elemento
+        Node aux = first;
+        while(aux!=null&&!util.Utility.equals(index, i)){
+            aux = aux.next;
+            i++;
+        }
+        //sale cuando aux==null o encontro el elemento
+        if(aux!=null&&util.Utility.equals(index, i)){
+            return aux;
+        }
+        return null; //el elemento no existe
     }
 
     @Override
