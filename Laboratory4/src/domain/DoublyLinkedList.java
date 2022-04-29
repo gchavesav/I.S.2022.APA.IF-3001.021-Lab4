@@ -126,7 +126,8 @@ public class DoublyLinkedList implements List {
         Object element = first.data;
         first = first.next;
         //rompo el doble enlace
-        first.prev = null;
+        if(first!=null)
+            first.prev = null;
         return element;
     }
 
