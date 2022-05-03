@@ -129,7 +129,15 @@ public class SinglyLinkedList implements List {
 
     @Override
     public void sort() throws ListException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        for(int i=1;i<=size();i++){
+    	     for(int j=i+1;j<size();j++){
+    		if(util.Utility.lessT(getNode(j).data, getNode(i).data)){
+    		   Object aux=getNode(i).data;
+                    getNode(i).data=getNode(j).data;
+    		    getNode(j).data=aux;
+    		}//if
+            }//for j
+        }//for i
     }
 
     @Override
@@ -200,7 +208,7 @@ public class SinglyLinkedList implements List {
         String result = "Singly Linked List Content\n";
         Node aux = first;
         while(aux!=null){
-           result+=aux.data+" ";
+           result+=aux.data+"\n";
            aux = aux.next;
         }
         return result;

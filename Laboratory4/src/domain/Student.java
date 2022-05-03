@@ -9,25 +9,54 @@ package domain;
  * @author Profesor Gilberth Chaves A <gchavesav@ucr.ac.cr>
  */
 public class Student implements Person {
+    private String id;
+    private String name;
+    private int age;
+    private String address;
+
+    //Constructor
+    public Student(String id, String name, int age, String address) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.address = address;
+    }
 
     @Override
     public boolean equals(Person other) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if(!(other instanceof Person)) return false;
+        Student st = (Student) other;
+        return this.id.equals(st.id);
+        //return st.id.equals(this.id);
+    }
+
+    public String getId() {
+        return id;
     }
 
     @Override
     public String getName() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return this.name;
     }
 
     @Override
     public int getAge() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return this.age;
     }
 
     @Override
     public String getAddress() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return this.getAddress();
     }
+    
+    private double studyHours(){
+        return age/2;
+    }
+
+    @Override
+    public String toString() {
+        return "Student {" + "id=" + id + ", name=" + name + ", age=" + age + ", study hours="+studyHours()+", address="+address+'}';
+    }
+    
     
 }

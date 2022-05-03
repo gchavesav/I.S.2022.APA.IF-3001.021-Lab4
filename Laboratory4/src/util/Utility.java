@@ -7,6 +7,7 @@ package util;
 
 import domain.DoublyLinkedList;
 import domain.SinglyLinkedList;
+import domain.Student;
 import java.text.DecimalFormat;
 import java.util.Random;
 
@@ -92,6 +93,7 @@ public class Utility {
         if(a instanceof Integer && b instanceof Integer) return "Integer";
         if(a instanceof String && b instanceof String) return "String";
         if(a instanceof Character && b instanceof Character) return "Character";
+        if(a instanceof Student && b instanceof Student) return "Student";
         return "unknown";
     }
 
@@ -107,6 +109,10 @@ public class Utility {
             case "Character":
                 Character a3=(Character)a; Character b3=(Character)b;
                 return a3.compareTo(a3)==0;
+            case "Student":
+                Student a4=(Student)a; Student b4=(Student)b;
+                //return a4.equals(b4); //funciona por el equals de la clase Student
+                return a4.getId().equals(b4.getId());
                 
         }
         return false;
@@ -124,6 +130,10 @@ public class Utility {
             case "Character":
                 Character a3=(Character)a; Character b3=(Character)b;
                 return a3.compareTo(a3)<0;
+            case "Student":
+                Student a4=(Student)a; Student b4=(Student)b;
+                //return a4.equals(b4); //funciona por el equals de la clase Student
+                return a4.getName().compareToIgnoreCase(b4.getName())<0;
         }
         return false; 
     }
